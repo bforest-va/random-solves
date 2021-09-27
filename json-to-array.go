@@ -9,11 +9,7 @@ import (
 	"strings"
 )
 
-type NewArticles struct {
-	Articles []Article `json:"articles"`
-}
-
-type OldArticles struct {
+type Articles struct {
 	Articles []Article `json:"articles"`
 }
 
@@ -36,7 +32,7 @@ func main() {
 	}
 	defer oldFile.Close()
 	data, _ := ioutil.ReadAll(oldFile)
-	oldArticles := OldArticles{}
+	oldArticles := Articles{}
 	err = json.Unmarshal(data, &oldArticles)
 
 	for _, v := range(oldArticles.Articles) {
@@ -49,7 +45,7 @@ func main() {
 	}
 	defer newFile.Close()
 	data, _ = ioutil.ReadAll(newFile)
-	newArticles := NewArticles{}
+	newArticles := Articles{}
 	err = json.Unmarshal(data, &newArticles)
 
 	for _, v := range(newArticles.Articles) {
